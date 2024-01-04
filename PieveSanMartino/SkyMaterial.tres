@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://kqjcl3bj70iq"]
+
+[ext_resource type="Texture2D" uid="uid://cjglvrph7s8ah" path="res://PieveSanMartino/pano_sky.jpg" id="1_gx1fp"]
+
+[resource]
+resource_name = "Material.001"
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = ExtResource("1_gx1fp")
