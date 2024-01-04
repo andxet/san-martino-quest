@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4av3durx2ya1"]
+
+[ext_resource type="PackedScene" uid="uid://du6ugc46cg110" path="res://PieveSanMartino/sky.fbx" id="1_gomjq"]
+[ext_resource type="PackedScene" uid="uid://bm6u1lybbkoxx" path="res://scenes/pieve_model.tscn" id="2_jdruv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4y3un"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_wsl87"]
+sky_material = SubResource("ProceduralSkyMaterial_4y3un")
+
+[sub_resource type="Environment" id="Environment_it4op"]
+background_mode = 2
+sky = SubResource("Sky_wsl87")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Pieve" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_it4op")
+
+[node name="Sky" parent="." instance=ExtResource("1_gomjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.52285, 0, -1.3974)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Sky"]
+transform = Transform3D(-0.967819, -0.0288538, -0.249987, 0, 0.993405, -0.11466, 0.251647, -0.11097, -0.961436, -12.7477, 0.514305, -17.0603)
+light_energy = 3.0
+spot_range = 25.5426
+spot_angle = 35.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sky"]
+transform = Transform3D(-0.621981, 0.233393, 0.74744, -0.0288538, 0.947067, -0.319738, -0.7825, -0.220437, -0.582324, 20.5708, -0.594033, -13.7708)
+light_energy = 3.0
+spot_range = 31.7477
+spot_angle = 35.0
+
+[node name="pieve_model" parent="Sky" instance=ExtResource("2_jdruv")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.122958, -2.18748, -0.404092)
