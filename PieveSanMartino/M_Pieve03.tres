@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cdnvhxug0bu0v"]
+
+[ext_resource type="Texture2D" uid="uid://bispk2sdcl2we" path="res://PieveSanMartino/Pieve_san_martino-ed53565b99632c26efb04b1e05a99f0d_Pieve_san_martino_diffuse.1003.png" id="1_h8see"]
+[ext_resource type="Texture2D" uid="uid://blt7npbivbpfr" path="res://PieveSanMartino/Pieve_san_martino-ed53565b99632c26efb04b1e05a99f0d_Pieve_san_martino_normal.1003.png" id="2_uhk56"]
+
+[resource]
+albedo_texture = ExtResource("1_h8see")
+normal_enabled = true
+normal_texture = ExtResource("2_uhk56")

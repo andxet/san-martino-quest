@@ -33,7 +33,7 @@ _subresources={
 "materials": {
 "Material.001": {
 "use_external/enabled": true,
-"use_external/path": "res://Material.001.tres"
+"use_external/path": "res://PieveSanMartino/SkyMaterial.tres"
 }
 },
 "meshes": {
