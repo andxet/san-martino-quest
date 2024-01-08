@@ -6,6 +6,7 @@
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4152, 2.22126, -4.32414)
+collision_mask = 15
 script = ExtResource("1_rkc2l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

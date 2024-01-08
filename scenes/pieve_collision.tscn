@@ -13,6 +13,8 @@ data = PackedVector3Array(0.0511, -0.183, 0.0195, 0.0533, -0.1779, 0.019, 0.0533
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="RootNode" index="1"]
+collision_layer = 4
+collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_qy050")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/StaticBody3D" index="0"]

@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxy0aj4gy0qcf"]
+[gd_scene load_steps=6 format=3 uid="uid://bxy0aj4gy0qcf"]
 
 [ext_resource type="PackedScene" uid="uid://c4av3durx2ya1" path="res://scenes/pieve.tscn" id="1_qc5ve"]
 [ext_resource type="Script" path="res://scripts/exit_game.gd" id="1_xmfdt"]
 [ext_resource type="PackedScene" uid="uid://cjmw0bf33ocee" path="res://scenes/player.tscn" id="2_oaevj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2lkvm"]
+size = Vector3(43.076, 11.3369, 5.194)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jgutx"]
+size = Vector3(4.06854, 10.9154, 26.9357)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_xmfdt")
@@ -16,3 +22,24 @@ shadow_enabled = true
 [node name="Pieve" parent="." instance=ExtResource("1_qc5ve")]
 
 [node name="Player" parent="." instance=ExtResource("2_oaevj")]
+
+[node name="Spatial" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3897, 4.0343, 0)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Spatial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.114, -0.50085, 13.335)
+shape = SubResource("BoxShape3D_2lkvm")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Spatial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.343, 0, -16.368)
+shape = SubResource("BoxShape3D_2lkvm")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Spatial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.9642, -0.410522, -2.31026)
+shape = SubResource("BoxShape3D_jgutx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spatial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82816, -0.205261, -2.26849)
+shape = SubResource("BoxShape3D_jgutx")
