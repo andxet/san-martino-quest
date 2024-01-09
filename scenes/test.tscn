@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt1g8tuqt6d4j"]
+
+[ext_resource type="PackedScene" uid="uid://bkl4x3gvcdmth" path="res://PieveSanMartino/collision.fbx" id="1_nvqju"]
+
+[node name="Test" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.146187, 0.478156, 0, 0.956305, 0.292372, -0.500003, 0.253201, -0.828182, 0, 0, 0)
+light_color = Color(1, 0.686275, 0.498039, 1)
+light_energy = 0.8
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.919521, 0)
+use_collision = true
+size = Vector3(50, 1, 40)
+
+[node name="Root Scene" parent="." instance=ExtResource("1_nvqju")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.775551, 0, -0.631285, 0, 1, 0, 0.631285, 0, -0.775551, -19.6472, 4.52618, -14.6501)
