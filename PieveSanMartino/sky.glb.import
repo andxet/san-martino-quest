@@ -33,11 +33,11 @@ _subresources={
 "materials": {
 "Lit": {
 "use_external/enabled": true,
-"use_external/path": "res://PieveSanMartino/Lit.tres"
+"use_external/path": "res://PieveSanMartino/M_Sky_Lit.tres"
 },
 "Unlit": {
 "use_external/enabled": true,
-"use_external/path": "res://PieveSanMartino/Unlit.tres"
+"use_external/path": "res://PieveSanMartino/M_Sky_Unlit.tres"
 }
 }
 }
