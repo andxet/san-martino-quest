@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxy0aj4gy0qcf"]
+[gd_scene load_steps=7 format=3 uid="uid://bxy0aj4gy0qcf"]
 
 [ext_resource type="PackedScene" uid="uid://c4av3durx2ya1" path="res://scenes/pieve.tscn" id="1_qc5ve"]
 [ext_resource type="Script" path="res://scripts/exit_game.gd" id="1_xmfdt"]
 [ext_resource type="PackedScene" uid="uid://cjmw0bf33ocee" path="res://scenes/player.tscn" id="2_oaevj"]
+[ext_resource type="PackedScene" uid="uid://crwi1ejjho4yr" path="res://scenes/FPS.tscn" id="4_c2s2e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2lkvm"]
 size = Vector3(43.076, 11.3369, 5.194)
@@ -44,3 +45,16 @@ shape = SubResource("BoxShape3D_jgutx")
 
 [node name="Player" parent="." instance=ExtResource("2_oaevj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7195, 0.311992, -4.32414)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Fps" parent="UI" instance=ExtResource("4_c2s2e")]
+layout_mode = 1
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 90.0
+offset_bottom = 30.0
