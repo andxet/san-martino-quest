@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d05jd6voujwmc"]
+
+[ext_resource type="PackedScene" uid="uid://qyfphejwdjxv" path="res://PieveSanMartino/Pieve_san_martino.glb" id="1_3v850"]
+[ext_resource type="PackedScene" uid="uid://28uli2yb8ybf" path="res://scenes/pieve_collision_glb.tscn" id="2_7nmhl"]
+
+[node name="pieve_model" type="Node3D"]
+
+[node name="Pieve_san_martino" parent="." instance=ExtResource("1_3v850")]
+
+[node name="pieve_collision" parent="." instance=ExtResource("2_7nmhl")]

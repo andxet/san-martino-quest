@@ -1,29 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4av3durx2ya1"]
+[gd_scene load_steps=3 format=3 uid="uid://c4av3durx2ya1"]
 
-[ext_resource type="PackedScene" uid="uid://bm6u1lybbkoxx" path="res://scenes/pieve_model.tscn" id="2_jdruv"]
-[ext_resource type="PackedScene" uid="uid://w7eul0cntu2l" path="res://PieveSanMartino/sky.glb" id="3_4mlh8"]
-[ext_resource type="PackedScene" uid="uid://w7eul0cntu2l" path="res://PieveSanMartino/sky.fbx" id="3_5ko6g"]
+[ext_resource type="PackedScene" uid="uid://d05jd6voujwmc" path="res://scenes/pieve_model_glb.tscn" id="2_5yoy4"]
+[ext_resource type="PackedScene" uid="uid://w7eul0cntu2l" path="res://PieveSanMartino/sky.glb" id="3_5ko6g"]
 
 [node name="Pieve" type="Node3D"]
 
-[node name="sky" parent="." instance=ExtResource("3_4mlh8")]
+[node name="sky" parent="." instance=ExtResource("3_5ko6g")]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="sky"]
+transform = Transform3D(-0.987273, 0.000216506, -0.159037, 0, 0.999999, 0.00136136, 0.159037, 0.00134403, -0.987272, -12.8131, 0.870817, -16.5563)
 light_energy = 3.0
 light_bake_mode = 1
 shadow_enabled = true
-spot_range = 25.5426
+spot_range = 40.0
 spot_angle = 35.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="sky"]
+transform = Transform3D(-0.655163, 0.0812307, 0.751108, 0.00115725, 0.99431, -0.106523, -0.755487, -0.0689206, -0.651528, 20.731, -0.404978, -13.7506)
 light_energy = 3.0
 light_bake_mode = 1
 shadow_enabled = true
-spot_range = 31.7477
+spot_range = 40.0
 spot_angle = 35.0
 
-[node name="pieve_model" parent="sky" instance=ExtResource("2_jdruv")]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.123, -2.187, 0.421805)
+[node name="SpotLight3D3" type="SpotLight3D" parent="sky"]
+transform = Transform3D(0.260252, 0.0567387, 0.963872, 0.00124137, 0.998251, -0.0590976, -0.96554, 0.0165768, 0.259726, 16.9875, -2.05235, 11.8734)
+light_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 40.0
+spot_angle = 35.0
 
-[node name="Sky" parent="." instance=ExtResource("3_5ko6g")]
-visible = false
+[node name="SpotLight3D4" type="SpotLight3D" parent="sky"]
+transform = Transform3D(0.544288, -0.193504, -0.816276, -0.00124534, 0.972846, -0.231451, 0.838898, 0.126992, 0.529267, -24.6906, 0.125325, 10.4367)
+light_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 40.0
+spot_angle = 35.0
+
+[node name="pieve_model" parent="sky" instance=ExtResource("2_5yoy4")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.123, -2.187, 0.421805)
