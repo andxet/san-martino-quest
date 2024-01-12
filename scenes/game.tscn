@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxy0aj4gy0qcf"]
+[gd_scene load_steps=8 format=3 uid="uid://bxy0aj4gy0qcf"]
 
 [ext_resource type="PackedScene" uid="uid://c4av3durx2ya1" path="res://scenes/pieve.tscn" id="1_qc5ve"]
 [ext_resource type="Script" path="res://scripts/exit_game.gd" id="1_xmfdt"]
 [ext_resource type="PackedScene" uid="uid://cjmw0bf33ocee" path="res://scenes/player.tscn" id="2_oaevj"]
 [ext_resource type="PackedScene" uid="uid://crwi1ejjho4yr" path="res://scenes/FPS.tscn" id="4_c2s2e"]
+[ext_resource type="LightmapGIData" uid="uid://b3g4osqafqupo" path="res://scenes/game.lmbake" id="5_k4tk7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2lkvm"]
 size = Vector3(43.076, 11.3369, 5.194)
@@ -18,6 +19,7 @@ script = ExtResource("1_xmfdt")
 transform = Transform3D(0.0749785, 0.291549, -0.953613, 0, 0.956305, 0.292372, 0.997185, -0.0219216, 0.0717023, 0, 0, 0)
 light_color = Color(1, 0.847059, 0.760784, 1)
 light_energy = 0.8
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="Pieve" parent="." instance=ExtResource("1_qc5ve")]
@@ -45,6 +47,10 @@ shape = SubResource("BoxShape3D_jgutx")
 
 [node name="Player" parent="." instance=ExtResource("2_oaevj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7195, 0.311992, -4.32414)
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+bounces = 2
+light_data = ExtResource("5_k4tk7")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
