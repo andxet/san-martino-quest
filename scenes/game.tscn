@@ -82,7 +82,6 @@ action_up = "forward"
 action_down = "backward"
 
 [node name="Virtual Joystick2" parent="UI/CanvasLayer" instance=ExtResource("6_85k32")]
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_right = 1.0
@@ -91,3 +90,7 @@ offset_top = -300.0
 offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
+action_left = "look_left"
+action_right = "look_right"
+action_up = "look_up"
+action_down = "look_down"
