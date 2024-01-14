@@ -6,14 +6,17 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSIVITY = 0.4
 
+var mouse_locked: bool = false;
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	_lock_mouse(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion && mouse_locked:
 		rotate_y(deg_to_rad(-event.relative.x * MOUSE_SENSIVITY))
 		head.rotate_x(deg_to_rad(-event.relative.y * MOUSE_SENSIVITY))
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
@@ -39,3 +42,16 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if Input.is_action_just_pressed("toggle_mouse"):
+		_lock_mouse(not mouse_locked)
+
+
+func _lock_mouse(should_lock: bool):
+	if should_lock:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	mouse_locked = should_lock
