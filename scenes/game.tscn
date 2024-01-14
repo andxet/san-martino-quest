@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxy0aj4gy0qcf"]
+[gd_scene load_steps=10 format=3 uid="uid://bxy0aj4gy0qcf"]
 
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_hrpr0"]
 [ext_resource type="PackedScene" uid="uid://c4av3durx2ya1" path="res://scenes/pieve.tscn" id="1_qc5ve"]
 [ext_resource type="Script" path="res://scripts/exit_game.gd" id="1_xmfdt"]
 [ext_resource type="PackedScene" uid="uid://cjmw0bf33ocee" path="res://scenes/player.tscn" id="2_oaevj"]
@@ -16,8 +17,12 @@ size = Vector3(4.06854, 10.9154, 26.9357)
 [node name="Game" type="Node3D"]
 script = ExtResource("1_xmfdt")
 
+[node name="Controller" type="Node3D" parent="." node_paths=PackedStringArray("enable_on_debug")]
+script = ExtResource("1_hrpr0")
+enable_on_debug = [null]
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.0749785, 0.291549, -0.953613, 0, 0.956305, 0.292372, 0.997185, -0.0219216, 0.0717023, 0, 0, 0)
+transform = Transform3D(-0.206276, 0.291549, -0.93405, 0.0852324, 0.956305, 0.279673, 0.974775, -0.0219216, -0.222112, 0, 0, 0)
 light_color = Color(1, 0.847059, 0.760784, 1)
 light_energy = 0.8
 light_bake_mode = 1
@@ -50,7 +55,9 @@ shape = SubResource("BoxShape3D_jgutx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7195, 0.311992, -4.32414)
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
+quality = 2
 bounces = 2
+generate_probes_subdiv = 0
 light_data = ExtResource("5_k4tk7")
 
 [node name="UI" type="Control" parent="."]
