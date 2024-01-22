@@ -5,6 +5,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSIVITY = 0.4
+const LOOK_SENSIVITY = 2.5
 
 var mouse_locked: bool = false;
 var is_debug: bool
@@ -47,6 +48,12 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+	if !mouse_locked:
+		var look_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+		rotate_y(deg_to_rad(-look_dir.x * LOOK_SENSIVITY))
+		head.rotate_x(deg_to_rad(-look_dir.y * LOOK_SENSIVITY))
+		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 	move_and_slide()
 	
