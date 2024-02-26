@@ -15,6 +15,9 @@ var is_pc: bool
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+@onready var all_interactions = []
+@onready var interact_label = $'Interaction Components/Interaction label'
+
 func _ready():
 	is_debug = OS.has_feature("debug")
 	is_mobile = OS.has_feature("mobile")
@@ -22,6 +25,8 @@ func _ready():
 	
 	if is_pc:
 		_lock_mouse(true)
+		
+	update_interactions()
 	
 func _input(event):
 	if event is InputEventMouseMotion && mouse_locked:
@@ -58,9 +63,13 @@ func _physics_process(delta):
 	move_and_slide()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if is_pc and Input.is_action_just_pressed("toggle_mouse"):
 		_lock_mouse(not mouse_locked)
+		
+	if Input.is_action_just_pressed("Use"):
+		if all_interactions:
+			all_interactions[0].Use()
 
 
 func _lock_mouse(should_lock: bool):
@@ -69,3 +78,22 @@ func _lock_mouse(should_lock: bool):
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_locked = should_lock
+
+
+#region Interaction
+
+func _on_interaction_area_area_entered(area):
+	all_interactions.insert(0, area)
+	update_interactions()
+
+func _on_interaction_area_area_exited(area):
+	all_interactions.erase(area)
+	update_interactions()
+
+func update_interactions():
+	if all_interactions:
+		interact_label.text = all_interactions[0].interact_label
+	else:
+		interact_label.text = ""
+
+#endregion

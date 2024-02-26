@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjmw0bf33ocee"]
+[gd_scene load_steps=5 format=3 uid="uid://cjmw0bf33ocee"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_rkc2l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gkenf"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_nysxl"]
+font_size = 34
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gwip"]
+
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4152, 2.22126, -4.32414)
-collision_mask = 15
+collision_mask = 31
 script = ExtResource("1_rkc2l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -17,3 +21,35 @@ shape = SubResource("CapsuleShape3D_gkenf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="Interaction Components" type="Node3D" parent="."]
+
+[node name="Interaction label" type="Label" parent="Interaction Components"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = 236.0
+offset_right = 143.0
+offset_bottom = 259.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Interaction"
+label_settings = SubResource("LabelSettings_nysxl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Interaction area" type="Area3D" parent="Interaction Components"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction Components/Interaction area"]
+shape = SubResource("CapsuleShape3D_4gwip")
+
+[connection signal="area_entered" from="Interaction Components/Interaction area" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="Interaction Components/Interaction area" to="." method="_on_interaction_area_area_exited"]
