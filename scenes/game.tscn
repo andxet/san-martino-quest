@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxy0aj4gy0qcf"]
+[gd_scene load_steps=11 format=3 uid="uid://bxy0aj4gy0qcf"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_hrpr0"]
 [ext_resource type="PackedScene" uid="uid://c4av3durx2ya1" path="res://scenes/pieve.tscn" id="1_qc5ve"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://crwi1ejjho4yr" path="res://scenes/FPS.tscn" id="4_c2s2e"]
 [ext_resource type="LightmapGIData" uid="uid://b3g4osqafqupo" path="res://scenes/game.lmbake" id="5_k4tk7"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="6_85k32"]
+[ext_resource type="PackedScene" uid="uid://vtyypmj18g4s" path="res://scenes/traps.tscn" id="6_tujbx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2lkvm"]
 size = Vector3(43.076, 11.3369, 5.194)
@@ -60,6 +61,8 @@ bounces = 2
 generate_probes_subdiv = 0
 light_data = ExtResource("5_k4tk7")
 
+[node name="Traps" parent="." instance=ExtResource("6_tujbx")]
+
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -73,15 +76,15 @@ offset_top = 30.0
 offset_right = 90.0
 offset_bottom = 30.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+[node name="VirtualJoysticks" type="CanvasLayer" parent="UI"]
 
-[node name="Virtual Joystick" parent="UI/CanvasLayer" instance=ExtResource("6_85k32")]
+[node name="Virtual Joystick" parent="UI/VirtualJoysticks" instance=ExtResource("6_85k32")]
 action_left = "left"
 action_right = "right"
 action_up = "forward"
 action_down = "backward"
 
-[node name="Virtual Joystick2" parent="UI/CanvasLayer" instance=ExtResource("6_85k32")]
+[node name="Virtual Joystick2" parent="UI/VirtualJoysticks" instance=ExtResource("6_85k32")]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_right = 1.0
