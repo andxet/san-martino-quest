@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp5icgiskr6rd"]
+
+[ext_resource type="Script" path="res://Interactable.gd" id="1_s4fyn"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_huilr"]
+height = 0.99415
+radius = 0.498434
+
+[node name="Interaction area" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0482149, 0.945575, -0.488176)
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_s4fyn")
+
+[node name="Interaction shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0155015)
+shape = SubResource("CylinderShape3D_huilr")
