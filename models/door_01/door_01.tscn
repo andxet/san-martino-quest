@@ -1,15 +1,31 @@
 [gd_scene load_steps=9 format=3 uid="uid://bik8yceark0dy"]
 
 [ext_resource type="Script" path="res://models/door_01/door.gd" id="1_055mc"]
-[ext_resource type="PackedScene" path="res://models/door_01/wooden_door_01.glb" id="1_h7wr4"]
-[ext_resource type="Script" path="res://Interactable.gd" id="3_o0xfy"]
+[ext_resource type="PackedScene" uid="uid://rcku6asc22q6" path="res://models/door_01/wooden_door_01.glb" id="1_h7wr4"]
+[ext_resource type="PackedScene" uid="uid://dp5icgiskr6rd" path="res://scenes/interaction_area.tscn" id="2_5ptgj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hs6yl"]
 size = Vector3(0.0828247, 1.86224, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ronv"]
 
-[sub_resource type="Animation" id="Animation_shqid"]
+[sub_resource type="Animation" id="Animation_pkll2"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_adklc"]
 resource_name = "open"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -24,45 +40,36 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uqdrg"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_12vkf"]
 _data = {
-"open": SubResource("Animation_shqid")
+"RESET": SubResource("Animation_pkll2"),
+"open": SubResource("Animation_adklc")
 }
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_huilr"]
-height = 1.9
-radius = 1.0
-
 [node name="Door01" type="Node3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_055mc")
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_h7wr4")]
-transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, -0.0442994, 0.950645, -0.508563)
+[node name="Hinge" type="Node3D" parent="."]
 
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Hinge"]
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, -0.0442994, 0, -0.508563)
 collision_layer = 16
+sync_to_physics = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hinge/AnimatableBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00247193, 0.940826, -5.96046e-08)
 shape = SubResource("BoxShape3D_hs6yl")
 
+[node name="Interaction area" parent="Hinge" instance=ExtResource("2_5ptgj")]
+
+[node name="Sketchfab_Scene" parent="Hinge" instance=ExtResource("1_h7wr4")]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, -0.0442994, 0.950645, -0.508563)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
+root_node = NodePath("../Hinge")
 libraries = {
 "": SubResource("AnimationLibrary_6ronv"),
-"door": SubResource("AnimationLibrary_uqdrg")
+"door": SubResource("AnimationLibrary_12vkf")
 }
 
-[node name="Interaction area" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0482149, 0, -0.488176)
-collision_layer = 32
-collision_mask = 0
-monitoring = false
-script = ExtResource("3_o0xfy")
-
-[node name="Interaction shape" type="CollisionShape3D" parent="Interaction area"]
-shape = SubResource("CylinderShape3D_huilr")
-
-[connection signal="on_used" from="Interaction area" to="." method="_on_interaction_area_on_used"]
+[connection signal="on_used" from="Hinge/Interaction area" to="." method="_on_interaction_area_on_used"]
