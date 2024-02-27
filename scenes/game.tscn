@@ -1,13 +1,29 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxy0aj4gy0qcf"]
+[gd_scene load_steps=19 format=3 uid="uid://bxy0aj4gy0qcf"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_hrpr0"]
 [ext_resource type="PackedScene" uid="uid://c4av3durx2ya1" path="res://scenes/pieve.tscn" id="1_qc5ve"]
 [ext_resource type="Script" path="res://scripts/exit_game.gd" id="1_xmfdt"]
 [ext_resource type="PackedScene" uid="uid://cjmw0bf33ocee" path="res://scenes/player.tscn" id="2_oaevj"]
 [ext_resource type="PackedScene" uid="uid://crwi1ejjho4yr" path="res://scenes/FPS.tscn" id="4_c2s2e"]
+[ext_resource type="PackedScene" uid="uid://b5x80agams7h7" path="res://scenes/PickupableIdol.tscn" id="4_ritki"]
 [ext_resource type="LightmapGIData" uid="uid://b3g4osqafqupo" path="res://scenes/game.lmbake" id="5_k4tk7"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="6_85k32"]
 [ext_resource type="PackedScene" uid="uid://vtyypmj18g4s" path="res://scenes/traps.tscn" id="6_tujbx"]
+[ext_resource type="PackedScene" uid="uid://fcjfwcx452g2" path="res://scenes/lever.tscn" id="9_4qqy1"]
+[ext_resource type="PackedScene" uid="uid://bik8yceark0dy" path="res://models/door_01/door_01.tscn" id="10_m1dg0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_df8hr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_q8cd6"]
+sky_material = SubResource("ProceduralSkyMaterial_df8hr")
+
+[sub_resource type="Environment" id="Environment_qij0e"]
+background_mode = 2
+sky = SubResource("Sky_q8cd6")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2lkvm"]
 size = Vector3(43.076, 11.3369, 5.194)
@@ -15,40 +31,48 @@ size = Vector3(43.076, 11.3369, 5.194)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jgutx"]
 size = Vector3(4.06854, 10.9154, 26.9357)
 
-[node name="Game" type="Node3D"]
+[sub_resource type="LabelSettings" id="LabelSettings_61dq4"]
+font_size = 34
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mprq2"]
+size = Vector3(11.1947, 10.4729, 18.9783)
+
+[node name="Game" type="Node3D" node_paths=PackedStringArray("quest_label")]
+script = ExtResource("1_hrpr0")
+quest_label = NodePath("UI/QuestLabel")
+
+[node name="ExitOnEsc" type="Node3D" parent="."]
 script = ExtResource("1_xmfdt")
 
-[node name="Controller" type="Node3D" parent="." node_paths=PackedStringArray("enable_on_debug")]
-script = ExtResource("1_hrpr0")
-enable_on_debug = [null]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qij0e")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.206276, 0.291549, -0.93405, 0.0852324, 0.956305, 0.279673, 0.974775, -0.0219216, -0.222112, 0, 0, 0)
 light_color = Color(1, 0.847059, 0.760784, 1)
 light_energy = 0.8
-light_bake_mode = 1
 shadow_enabled = true
 
 [node name="Pieve" parent="." instance=ExtResource("1_qc5ve")]
 
-[node name="Spatial" type="StaticBody3D" parent="Pieve"]
+[node name="map borders" type="StaticBody3D" parent="Pieve"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.1299, 4.0343, 2.11136)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Pieve/Spatial"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Pieve/map borders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.114, -0.50085, 13.335)
 shape = SubResource("BoxShape3D_2lkvm")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Pieve/Spatial"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Pieve/map borders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.343, 0, -16.368)
 shape = SubResource("BoxShape3D_2lkvm")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Pieve/Spatial"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Pieve/map borders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.9642, -0.410522, -2.31026)
 shape = SubResource("BoxShape3D_jgutx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pieve/Spatial"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pieve/map borders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82816, -0.205261, -2.26849)
 shape = SubResource("BoxShape3D_jgutx")
 
@@ -61,13 +85,13 @@ bounces = 2
 generate_probes_subdiv = 0
 light_data = ExtResource("5_k4tk7")
 
-[node name="Traps" parent="." instance=ExtResource("6_tujbx")]
-
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Fps" parent="UI" instance=ExtResource("4_c2s2e")]
 layout_mode = 1
@@ -97,3 +121,50 @@ action_left = "look_left"
 action_right = "look_right"
 action_up = "look_up"
 action_down = "look_down"
+
+[node name="QuestLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -401.0
+offset_top = 15.0
+offset_right = 399.0
+offset_bottom = 75.0
+grow_horizontal = 2
+text = "Quest label"
+label_settings = SubResource("LabelSettings_61dq4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PickupableIdol" parent="." instance=ExtResource("4_ritki")]
+transform = Transform3D(-0.00278809, 0, -0.224983, 0, 0.225, 0, 0.224983, 0, -0.00278809, 14.9952, 1.96435, 0.0156211)
+
+[node name="Traps" parent="." instance=ExtResource("6_tujbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9911, 0, 0)
+
+[node name="front door lever" parent="." instance=ExtResource("9_4qqy1")]
+transform = Transform3D(0.837337, 0, 0.546687, 0, 1, 0, -0.546687, 0, 0.837337, 15.8964, 0.525836, 3.17316)
+consent_only_one_pull = true
+
+[node name="side_door_lever" parent="." instance=ExtResource("9_4qqy1")]
+transform = Transform3D(-0.0229141, 0, 0.999737, 0, 1, 0, -0.999737, 0, -0.0229141, -9.18077, 1.24015, -3.39543)
+consent_only_one_pull = true
+
+[node name="door_side" parent="." instance=ExtResource("10_m1dg0")]
+transform = Transform3D(-0.0479259, 0, 1.31569, 0, 1.27887, 0, -0.998851, 0, -0.063128, -6.54347, 0.464179, -8.42822)
+
+[node name="door_front" parent="." instance=ExtResource("10_m1dg0")]
+transform = Transform3D(-1.28988, 0, 0.0257688, 0, 1.63263, 0, -0.0178759, 0, -1.85941, -14.9728, 0.0870265, -0.410675)
+
+[node name="Close door area" type="Area3D" parent="."]
+collision_layer = 64
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Close door area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.58917, 3.91467, 0.384666)
+shape = SubResource("BoxShape3D_mprq2")
+
+[connection signal="on_pull_down" from="front door lever" to="." method="_on_lever_on_pull_down"]
+[connection signal="on_pull" from="side_door_lever" to="." method="_on_side_door_lever_on_pull"]
+[connection signal="area_entered" from="Close door area" to="." method="_on_close_door_area_area_entered"]
