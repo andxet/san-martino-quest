@@ -19,11 +19,6 @@ var picked: bool = false
 func _ready():
 	pickup_item.name = pickup_name
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func pickup() -> PickupItem:
 	if picked:
 		return
