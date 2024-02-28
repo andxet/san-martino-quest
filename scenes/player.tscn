@@ -1,66 +1,155 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjmw0bf33ocee"]
+[gd_scene load_steps=9 format=3 uid="uid://cjmw0bf33ocee"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_rkc2l"]
+[ext_resource type="Script" path="res://scripts/Health.gd" id="2_sodku"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gkenf"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_nysxl"]
-font_size = 34
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lg0g7"]
 radius = 1.32925
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yffyi"]
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="LabelSettings" id="LabelSettings_nysxl"]
+font_size = 34
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63yv7"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8ayh"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera") groups=["Player"]]
 collision_mask = 31
 script = ExtResource("1_rkc2l")
+camera = NodePath("Head/Camera3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_gkenf")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
+[node name="Camera3D" type="Camera3D" parent="Head" groups=["Player"]]
 
 [node name="Interaction Components" type="Node3D" parent="."]
 
-[node name="Interaction label" type="Label" parent="Interaction Components"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -143.0
-offset_top = 236.0
-offset_right = 143.0
-offset_bottom = 259.0
+[node name="Interaction area" type="Area3D" parent="Interaction Components" groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction Components/Interaction area" groups=["Player"]]
+shape = SubResource("SphereShape3D_lg0g7")
+
+[node name="TriggerArea" type="Area3D" parent="." groups=["Player"]]
+collision_mask = 0
+monitoring = false
+
+[node name="TriggerShape" type="CollisionShape3D" parent="TriggerArea" groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_yffyi")
+
+[node name="DamageArea" type="Area3D" parent="." node_paths=PackedStringArray("health_bar", "die_ui") groups=["Player"]]
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_sodku")
+max_health = 3
+health_bar = NodePath("../Control/ProgressBar")
+die_ui = NodePath("../Control/Die UI")
+
+[node name="TriggerShape" type="CollisionShape3D" parent="DamageArea" groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_yffyi")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Interaction label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -143.0
+offset_top = -63.0
+offset_right = 143.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 4
 text = "Interaction"
 label_settings = SubResource("LabelSettings_nysxl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Interaction area" type="Area3D" parent="Interaction Components"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_layer = 0
-collision_mask = 32
-monitorable = false
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -217.0
+offset_top = 15.0
+offset_right = -17.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_63yv7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_w8ayh")
+max_value = 1.0
+value = 1.0
+show_percentage = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction Components/Interaction area"]
-shape = SubResource("SphereShape3D_lg0g7")
+[node name="Die UI" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="TriggerArea" type="Area3D" parent="."]
-collision_mask = 0
-monitoring = false
+[node name="Label" type="Label" parent="Control/Die UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 419.0
+offset_top = 264.5
+offset_right = 693.0
+offset_bottom = 343.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 58
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TriggerShape" type="CollisionShape3D" parent="TriggerArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CylinderShape3D_yffyi")
+[node name="ColorRect" type="ColorRect" parent="Control/Die UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1960.0
+offset_bottom = 1960.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0.0784314)
 
 [connection signal="area_entered" from="Interaction Components/Interaction area" to="." method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="Interaction Components/Interaction area" to="." method="_on_interaction_area_area_exited"]
+[connection signal="damaged" from="DamageArea" to="." method="_on_damage_area_damaged"]
+[connection signal="die" from="DamageArea" to="." method="_on_damage_area_die"]

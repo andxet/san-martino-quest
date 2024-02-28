@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PieveSanMartino"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
@@ -108,6 +108,7 @@ pointing/emulate_touch_from_mouse=true
 3d_physics/layer_5="Kinetic Object"
 3d_physics/layer_6="Interaction"
 3d_physics/layer_7="Areas"
+3d_physics/layer_8="DamageHitBox"
 
 [rendering]
 

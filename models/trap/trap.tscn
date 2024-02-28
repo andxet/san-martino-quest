@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfn4cgahnp4j0"]
+
+[ext_resource type="PackedScene" uid="uid://xq7orr3ul7h4" path="res://models/trap/spike_trap_01.glb" id="1_n136d"]
+
+[node name="Trap" instance=ExtResource("1_n136d")]
+
+[node name="OPM0041_OPM0041_0" parent="Sketchfab_model/4424719673b84aae8256f19889769264_fbx/RootNode/OPM0041" index="0"]
+gi_mode = 2
