@@ -100,18 +100,22 @@ func start_traps_movement():
 	trap_tween.tween_property(path_follow_3d, "progress_ratio", 1, trap_path_completion_seconds)
 	await trap_tween.finished
 
-func _on_side_door_lever_on_pull():
-	door_side.locked = false
-	door_side.open()
-
 func fade_out_anim():
+	fade_out.visible = true
 	var fade_out_tween = get_tree().create_tween()
 	fade_out_tween.tween_property(fade_out, "color", Color(Color.BLACK, 1.0), 4)
 	await fade_out_tween.finished
 
+func goto_main_menu():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+#region Signals
 func _on_player_died_signal():
 	await get_tree().create_timer(5).timeout
 	goto_main_menu()
-
-func goto_main_menu():
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	
+func _on_side_door_lever_on_pull():
+	door_side.locked = false
+	door_side.open()
+#endregion
