@@ -67,11 +67,10 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	if !mouse_locked:
-		var look_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down")
-		rotate_y(deg_to_rad(-look_dir.x * LOOK_SENSIVITY))
-		head.rotate_x(deg_to_rad(-look_dir.y * LOOK_SENSIVITY))
-		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+	var look_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	rotate_y(deg_to_rad(-look_dir.x * LOOK_SENSIVITY))
+	head.rotate_x(deg_to_rad(-look_dir.y * LOOK_SENSIVITY))
+	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 	move_and_slide()
 	
