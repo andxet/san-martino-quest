@@ -83,7 +83,7 @@ func _process(_delta):
 	if is_pc and Input.is_action_just_pressed("toggle_mouse"):
 		_lock_mouse(not mouse_locked)
 		
-	if Input.is_action_just_pressed("Use"):
+	if Input.is_action_just_pressed("use"):
 		if all_interactions:
 			all_interactions[0].Use()
 

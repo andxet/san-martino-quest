@@ -1,6 +1,6 @@
 class_name Interactable extends Area3D
 
-@export var interact_label : String = "Use"
+@export var interact_label : String = "use"
 
 signal on_used
 
