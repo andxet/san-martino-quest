@@ -230,7 +230,6 @@ transform = Transform3D(-0.0479259, 0, 1.31569, 0, 1.27887, 0, -0.998851, 0, -0.
 
 [node name="door_front" parent="." instance=ExtResource("10_m1dg0")]
 transform = Transform3D(-1.28988, 0, 0.0257688, 0, 1.63263, 0, -0.0178759, 0, -1.85941, -14.9728, 0.0870265, -0.410675)
-locked = false
 
 [node name="Close door area" type="Area3D" parent="."]
 collision_layer = 64
