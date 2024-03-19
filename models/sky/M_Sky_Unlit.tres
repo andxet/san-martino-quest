@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ldselno7pb18"]
+
+[ext_resource type="Texture2D" uid="uid://cjglvrph7s8ah" path="res://models/sky/pano_sky.jpg" id="1_8mcyb"]
+
+[resource]
+resource_name = "Unlit"
+shading_mode = 0
+albedo_texture = ExtResource("1_8mcyb")
