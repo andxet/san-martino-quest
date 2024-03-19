@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bik8yceark0dy"]
 
-[ext_resource type="Script" path="res://models/door_01/door.gd" id="1_055mc"]
 [ext_resource type="PackedScene" uid="uid://rcku6asc22q6" path="res://models/door_01/wooden_door_01.glb" id="1_h7wr4"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_qvqdn"]
 [ext_resource type="PackedScene" uid="uid://dp5icgiskr6rd" path="res://scenes/interaction_area.tscn" id="2_5ptgj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hs6yl"]
@@ -47,7 +47,7 @@ _data = {
 }
 
 [node name="Door01" type="Node3D"]
-script = ExtResource("1_055mc")
+script = ExtResource("1_qvqdn")
 
 [node name="Hinge" type="Node3D" parent="."]
 

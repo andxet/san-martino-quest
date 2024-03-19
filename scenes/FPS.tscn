@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://crwi1ejjho4yr"]
 
-[ext_resource type="Script" path="res://scripts/FPS.gd" id="1_nwy4h"]
+[ext_resource type="Script" path="res://scripts/fps.gd" id="1_nwy4h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_muvpm"]
 font_size = 25
