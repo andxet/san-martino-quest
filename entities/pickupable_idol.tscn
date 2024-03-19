@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5x80agams7h7"]
+
+[ext_resource type="Script" path="res://scripts/pickupable_idol.gd" id="1_6vmv4"]
+[ext_resource type="PackedScene" uid="uid://dp5icgiskr6rd" path="res://scenes/interaction_area.tscn" id="1_dcptb"]
+[ext_resource type="PackedScene" uid="uid://860bcugyw7ps" path="res://scenes/idol.tscn" id="2_qb4w6"]
+[ext_resource type="Script" path="res://scripts/pickupable.gd" id="4_if1vh"]
+
+[node name="PickupableIdol" type="Node3D" node_paths=PackedStringArray("light", "tween_root", "pickup_node")]
+script = ExtResource("1_6vmv4")
+light = NodePath("SpotLight3D")
+tween_root = NodePath(".")
+pickup_node = NodePath("Pickupable")
+
+[node name="Interaction area" parent="." instance=ExtResource("1_dcptb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+interact_label = "Pick"
+
+[node name="Interaction shape" parent="Interaction area" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0044921, -0.0155015)
+
+[node name="idol" parent="." instance=ExtResource("2_qb4w6")]
+
+[node name="Pickupable" type="Node3D" parent="." node_paths=PackedStringArray("root_to_delete")]
+script = ExtResource("4_if1vh")
+pickup_name = "Idol"
+root_to_delete = NodePath("..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.5
+light_size = 0.152
+spot_range = 10.128
+spot_angle = 180.0
+
+[connection signal="on_used" from="Interaction area" to="Pickupable" method="_on_interaction_area_on_used"]
+
+[editable path="Interaction area"]

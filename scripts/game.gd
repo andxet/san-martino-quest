@@ -1,17 +1,18 @@
 extends Node3D
+class_name Game
 
 @export var trap_path_completion_seconds: float = 20
 
 @onready var virtual_joysticks = $UI/VirtualJoysticks
 
 @onready var idol = $PickupableIdol
-@onready var door_side = $door_side
-@onready var door_front = $door_front
-@onready var lever = $"front door lever"
-@onready var traps = $"Traps path/PathFollow3D/Traps"
-@onready var close_door_area = $"Close door area"
-@onready var path_follow_3d = $"Traps path/PathFollow3D"
-@onready var win_area = $"Win area"
+@onready var door_side = $DoorSide
+@onready var door_front = $DoorFront
+@onready var lever = $FrontDoorLever
+@onready var traps = $TrapsPath/PathFollow3D/Traps
+@onready var close_door_area = $CloseDoorArea
+@onready var path_follow_3d = $TrapsPath/PathFollow3D
+@onready var win_area = $WinArea
 @onready var fade_out = $UI/FadeOut
 
 @export var quest_label: Label

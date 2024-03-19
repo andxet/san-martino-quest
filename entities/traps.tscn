@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://vtyypmj18g4s"]
+
+[ext_resource type="Script" path="res://scripts/traps.gd" id="1_lsmgq"]
+[ext_resource type="PackedScene" uid="uid://dfn4cgahnp4j0" path="res://models/trap/trap.tscn" id="2_u01sj"]
+[ext_resource type="Script" path="res://scripts/damage_on_touch.gd" id="3_sut0r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4kfg1"]
+size = Vector3(0.619629, 0.159495, 1.846)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0v7ss"]
+size = Vector3(0.402168, 5.44635, 16.5642)
+
+[node name="Traps" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_lsmgq")
+
+[node name="Trap0" parent="." instance=ExtResource("2_u01sj")]
+transform = Transform3D(-3.93403e-07, -9, 0, 9, -3.93403e-07, 0, 0, 0, 9, 0, 2.9179, -5.37037)
+
+[node name="Trap1" parent="." instance=ExtResource("2_u01sj")]
+transform = Transform3D(-3.93403e-07, -9, 0, 9, -3.93403e-07, 0, 0, 0, 9, 0, 2.9179, 0.163794)
+
+[node name="Trap2" parent="." instance=ExtResource("2_u01sj")]
+transform = Transform3D(-3.93403e-07, -9, 0, 9, -3.93403e-07, 0, 0, 0, 9, 0, 2.9179, 5.66594)
+
+[node name="Collisions" type="AnimatableBody3D" parent="."]
+collision_layer = 16
+sync_to_physics = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions"]
+transform = Transform3D(-3.93403e-07, -9, 0, 9, -3.93403e-07, 0, 0, 0, 9, -0.663936, 2.887, 0.172)
+shape = SubResource("BoxShape3D_4kfg1")
+
+[node name="Area3D" type="Area3D" parent="."]
+monitorable = false
+script = ExtResource("3_sut0r")
+damage = 1
+
+[node name="DamageShape" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56678, 2.92636, 0.163696)
+shape = SubResource("BoxShape3D_0v7ss")
+
+[connection signal="area_entered" from="Area3D" to="Area3D" method="_on_area_entered"]
+[connection signal="area_exited" from="Area3D" to="Area3D" method="_on_area_exited"]
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

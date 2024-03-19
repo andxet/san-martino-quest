@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4av3durx2ya1"]
+
+[ext_resource type="PackedScene" uid="uid://daqfvjlnj6h8b" path="res://scenes/sky.tscn" id="1_h2o6e"]
+[ext_resource type="PackedScene" uid="uid://d05jd6voujwmc" path="res://scenes/pieve_san_martino.tscn" id="2_5yoy4"]
+[ext_resource type="LightmapGIData" uid="uid://cvvwsj8pjnobw" path="res://scenes/level/level.lmbake" id="3_27v0o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b7p1s"]
+size = Vector3(44, 15, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_011k5"]
+size = Vector3(5, 15, 27)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2oitj"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_q8cd6"]
+sky_material = SubResource("ProceduralSkyMaterial_2oitj")
+
+[sub_resource type="Environment" id="Environment_ogm0f"]
+background_mode = 2
+sky = SubResource("Sky_q8cd6")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level" type="Node3D"]
+
+[node name="sky" parent="." instance=ExtResource("1_h2o6e")]
+
+[node name="PieveSanMartino" parent="sky" instance=ExtResource("2_5yoy4")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.123, -2.187, 0.422)
+
+[node name="MapBorders" type="StaticBody3D" parent="sky/PieveSanMartino"]
+transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, 0, 0, 0)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="sky/PieveSanMartino/MapBorders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 14.585)
+shape = SubResource("BoxShape3D_b7p1s")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="sky/PieveSanMartino/MapBorders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -14.681)
+shape = SubResource("BoxShape3D_b7p1s")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="sky/PieveSanMartino/MapBorders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6402, 6, 0)
+shape = SubResource("BoxShape3D_011k5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sky/PieveSanMartino/MapBorders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.6576, 6, 0)
+shape = SubResource("BoxShape3D_011k5")
+
+[node name="Lights" type="Node3D" parent="sky"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="sky/Lights"]
+transform = Transform3D(-0.987273, 0.000216506, -0.159037, 0, 0.999999, 0.00136136, 0.159037, 0.00134403, -0.987272, -12.8131, 0.870817, -16.5563)
+light_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 40.0
+spot_angle = 35.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="sky/Lights"]
+transform = Transform3D(-0.655163, 0.0812307, 0.751108, 0.00115725, 0.99431, -0.106523, -0.755487, -0.0689206, -0.651528, 20.731, -0.404978, -13.7506)
+light_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 40.0
+spot_angle = 35.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="sky/Lights"]
+transform = Transform3D(0.260252, 0.0567387, 0.963872, 0.00124137, 0.998251, -0.0590976, -0.96554, 0.0165768, 0.259726, 16.9875, -2.05235, 11.8734)
+light_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 40.0
+spot_angle = 35.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="sky/Lights"]
+transform = Transform3D(0.544288, -0.193504, -0.816276, -0.00124534, 0.972846, -0.231451, 0.838898, 0.126992, 0.529267, -24.6906, 0.125325, 10.4367)
+light_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 40.0
+spot_angle = 35.0
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+quality = 2
+bounces = 2
+generate_probes_subdiv = 0
+light_data = ExtResource("3_27v0o")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ogm0f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.206276, 0.291549, -0.93405, 0.0852324, 0.956305, 0.279673, 0.974775, -0.0219216, -0.222112, 0, 0, 0)
+light_color = Color(1, 0.847059, 0.760784, 1)
+light_energy = 0.8
+shadow_enabled = true
