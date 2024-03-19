@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bxy0aj4gy0qcf"]
+[gd_scene load_steps=17 format=3 uid="uid://bxy0aj4gy0qcf"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_hrpr0"]
 [ext_resource type="PackedScene" uid="uid://c4av3durx2ya1" path="res://scenes/level/level.tscn" id="1_qc5ve"]
 [ext_resource type="Script" path="res://scripts/exit_game.gd" id="1_xmfdt"]
 [ext_resource type="PackedScene" uid="uid://cjmw0bf33ocee" path="res://entities/player.tscn" id="2_oaevj"]
+[ext_resource type="Script" path="res://scripts/san_martino_quest.gd" id="2_vkonf"]
 [ext_resource type="PackedScene" uid="uid://crwi1ejjho4yr" path="res://scenes/FPS.tscn" id="4_c2s2e"]
 [ext_resource type="PackedScene" uid="uid://b5x80agams7h7" path="res://entities/pickupable_idol.tscn" id="4_ritki"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="6_85k32"]
@@ -28,9 +29,23 @@ size = Vector3(11.1947, 10.4729, 18.9783)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3vtan"]
 size = Vector3(26.5848, 10.4729, 3.32783)
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("quest_label")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("quest")]
 script = ExtResource("1_hrpr0")
-quest_label = NodePath("UI/QuestLabel")
+quest = NodePath("SanMartinoQuest")
+
+[node name="SanMartinoQuest" type="Node" parent="." node_paths=PackedStringArray("quest_label", "idol", "door_side", "door_front", "front_door_lever", "side_door_lever", "traps", "close_door_area", "path_follow_3d", "win_area", "fade_out")]
+script = ExtResource("2_vkonf")
+quest_label = NodePath("../UI/QuestLabel")
+idol = NodePath("../PickupableIdol")
+door_side = NodePath("../DoorSide")
+door_front = NodePath("../DoorFront")
+front_door_lever = NodePath("../FrontDoorLever")
+side_door_lever = NodePath("../SideDoorLever")
+traps = NodePath("../TrapsPath/PathFollow3D/Traps")
+close_door_area = NodePath("../CloseDoorArea")
+path_follow_3d = NodePath("../TrapsPath/PathFollow3D")
+win_area = NodePath("../WinArea")
+fade_out = NodePath("../UI/FadeOut")
 
 [node name="ExitOnEsc" type="Node3D" parent="."]
 script = ExtResource("1_xmfdt")
@@ -52,8 +67,8 @@ grow_vertical = 2
 layout_mode = 1
 offset_left = 30.0
 offset_top = 30.0
-offset_right = 90.0
-offset_bottom = 30.0
+offset_right = -1022.0
+offset_bottom = -578.0
 
 [node name="VirtualJoysticks" type="CanvasLayer" parent="UI"]
 
@@ -130,13 +145,22 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -401.0
 offset_top = 15.0
-offset_right = 399.0
+offset_right = 349.0
 offset_bottom = 75.0
 grow_horizontal = 2
 text = "Quest label"
 label_settings = SubResource("LabelSettings_61dq4")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="QuestBackground" type="ColorRect" parent="UI/QuestLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.196078)
 
 [node name="FadeOut" type="ColorRect" parent="UI"]
 visible = false
@@ -191,8 +215,6 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.88216, 3.91467, -9.90594)
 shape = SubResource("BoxShape3D_3vtan")
 
-[connection signal="died_signal" from="Player" to="." method="_on_player_died_signal"]
-[connection signal="on_pull_down" from="FrontDoorLever" to="." method="_on_lever_on_pull_down"]
-[connection signal="on_pull" from="SideDoorLever" to="." method="_on_side_door_lever_on_pull"]
+[connection signal="died_signal" from="Player" to="SanMartinoQuest" method="_on_player_died_signal"]
 [connection signal="area_entered" from="CloseDoorArea" to="." method="_on_close_door_area_area_entered"]
 [connection signal="area_entered" from="WinArea" to="." method="_on_close_door_area_area_entered"]

@@ -1,4 +1,5 @@
 extends Node3D
+class_name Lever
 
 signal on_pull
 signal on_pull_down

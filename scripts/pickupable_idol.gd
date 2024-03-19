@@ -1,4 +1,5 @@
 extends Node3D
+class_name PickupableIdol
 
 @export var light: Light3D
 @export var tween_root: Node3D
