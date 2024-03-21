@@ -1,4 +1,4 @@
-class_name Health extends Node3D
+class_name HealthComponent extends Node3D
 
 @export var max_health: int
 @export var health_bar: ProgressBar

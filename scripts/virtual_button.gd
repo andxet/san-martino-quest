@@ -1,6 +1,4 @@
-class_name VirtualButton
-
-extends Control
+class_name VirtualButton extends Control
 
 enum Visibility_mode {
 	ALWAYS, ## Always visible

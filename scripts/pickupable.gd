@@ -1,4 +1,4 @@
-class_name Pickup extends Node3D
+class_name Pickupable extends Node3D
 
 class PickupItem:
 	var name: String = "PickupItem"

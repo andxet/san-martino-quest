@@ -1,5 +1,4 @@
-extends Node3D
-class_name Game
+class_name Game extends Node3D
 
 @onready var virtual_joysticks = $UI/VirtualJoysticks
 

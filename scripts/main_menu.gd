@@ -1,4 +1,4 @@
-extends Node3D
+class_name MainMenu extends Node3D
 
 func _ready():
 	if OS.has_feature("pc"):

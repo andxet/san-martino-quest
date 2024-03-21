@@ -1,9 +1,8 @@
-extends Node3D
-class_name PickupableIdol
+class_name PickupableIdol extends Node3D
 
 @export var light: Light3D
 @export var tween_root: Node3D
-@export var pickup_node: Pickup
+@export var pickup_node: Pickupable
 
 signal on_picked_up
 signal on_end_pick_animation

@@ -1,20 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://crwi1ejjho4yr"]
 
-[ext_resource type="Script" path="res://scripts/fps.gd" id="1_nwy4h"]
+[ext_resource type="Script" path="res://scripts/fps_label.gd" id="1_nwy4h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_muvpm"]
 font_size = 25
 
-[node name="Fps" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
+[node name="FPSLabel" type="Label"]
 offset_right = 84.0
 offset_bottom = 35.0
 text = "FPS: 00"

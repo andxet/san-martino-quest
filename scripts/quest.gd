@@ -1,5 +1,4 @@
-extends Node
-class_name Quest
+class_name Quest extends Node
 
 func _prepare():
 	pass

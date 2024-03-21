@@ -1,5 +1,4 @@
-extends Quest
-class_name SanMartinoQuest
+class_name SanMartinoQuest extends Quest
 
 @export var trap_path_completion_seconds: float = 20
 
@@ -14,6 +13,7 @@ class_name SanMartinoQuest
 @export var path_follow_3d: PathFollow3D
 @export var win_area: Area3D
 @export var fade_out: ColorRect
+@export var player: Player
 
 func _prepare():
 	assert(idol)
@@ -26,6 +26,7 @@ func _prepare():
 	assert(path_follow_3d)
 	assert(win_area)
 	assert(fade_out)
+	assert(player)
 	
 	assert(quest_label)
 	
@@ -37,6 +38,7 @@ func _prepare():
 	door_front.locked = true
 	fade_out.hide()
 	fade_out.color = Color(Color.BLACK, 0)
+	player.died_signal.connect(_on_player_died_signal)
 	
 func _run():
 	quest_label.text = "Find the idol and run!"
@@ -74,7 +76,7 @@ func _run():
 	
 	await fade_out_anim()
 	
-	get_tree().change_scene_to_file("res://scenes/main menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
 	goto_main_menu()
 	# End quest
@@ -100,7 +102,7 @@ func goto_main_menu():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
-#region Signals
+#region Signals callbacks
 func _on_player_died_signal():
 	await get_tree().create_timer(5).timeout
 	goto_main_menu()
