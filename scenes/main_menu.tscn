@@ -47,6 +47,7 @@ transform = Transform3D(-0.318347, 0.393465, -0.862462, 0, 0.909795, 0.415058, 0
 [connection signal="pressed" from="UI/Main Menu/VBoxContainer/Start game" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="UI/Main Menu/VBoxContainer/Options" to="UI" method="GoToOptions"]
 [connection signal="pressed" from="UI/Main Menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="UI/OptionsMenu/HBoxContainer/BackButton" to="UI" method="GoToMainMenu"]
 
 [editable path="UI/Main Menu"]
 [editable path="UI/OptionsMenu"]
