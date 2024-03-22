@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5x80agams7h7"]
+[gd_scene load_steps=6 format=3 uid="uid://b5x80agams7h7"]
 
 [ext_resource type="Script" path="res://scripts/pickupable_idol.gd" id="1_6vmv4"]
 [ext_resource type="PackedScene" uid="uid://dp5icgiskr6rd" path="res://scenes/interaction_area.tscn" id="1_dcptb"]
 [ext_resource type="PackedScene" uid="uid://860bcugyw7ps" path="res://scenes/idol.tscn" id="2_qb4w6"]
 [ext_resource type="Script" path="res://scripts/pickupable.gd" id="4_if1vh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3177y"]
+height = 2.47485
+radius = 1.45264
 
 [node name="PickupableIdol" type="Node3D" node_paths=PackedStringArray("light", "tween_root", "pickup_node")]
 script = ExtResource("1_6vmv4")
@@ -17,6 +21,7 @@ interact_label = "Pick"
 
 [node name="Interaction shape" parent="Interaction area" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0044921, -0.0155015)
+shape = SubResource("CylinderShape3D_3177y")
 
 [node name="idol" parent="." instance=ExtResource("2_qb4w6")]
 
