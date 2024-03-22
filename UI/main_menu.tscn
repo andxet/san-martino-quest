@@ -56,5 +56,4 @@ text = "Options"
 layout_mode = 2
 focus_neighbor_top = NodePath("../Options")
 theme_override_font_sizes/font_size = 30
-text = "Exit
-"
+text = "Exit"
