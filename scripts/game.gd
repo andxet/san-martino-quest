@@ -18,8 +18,8 @@ func _ready():
 		print("Debug build")
 	elif OS.has_feature("release"):
 		print("Release build")
-	assert(virtual_joysticks)
 	
 	if quest:
 		quest._prepare()
 		quest._run()
+	
