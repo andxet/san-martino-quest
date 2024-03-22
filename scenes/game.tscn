@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://vtyypmj18g4s" path="res://entities/traps.tscn" id="6_tujbx"]
 [ext_resource type="Script" path="res://scripts/virtual_button.gd" id="8_taijp"]
 [ext_resource type="PackedScene" uid="uid://fcjfwcx452g2" path="res://entities/lever.tscn" id="9_4qqy1"]
-[ext_resource type="PackedScene" uid="uid://bik8yceark0dy" path="res://models/door_01/door_01.tscn" id="10_m1dg0"]
+[ext_resource type="PackedScene" uid="uid://bik8yceark0dy" path="res://entities/door.tscn" id="10_m1dg0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_61dq4"]
 font_size = 34

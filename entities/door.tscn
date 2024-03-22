@@ -46,7 +46,7 @@ _data = {
 "open": SubResource("Animation_adklc")
 }
 
-[node name="Door01" type="Node3D"]
+[node name="Door" type="Node3D"]
 script = ExtResource("1_qvqdn")
 
 [node name="Hinge" type="Node3D" parent="."]
