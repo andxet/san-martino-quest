@@ -3,8 +3,18 @@ class_name Player extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const MOUSE_SENSIVITY = 0.4
-const LOOK_SENSIVITY = 2.5
+
+const MOUSE_LOOK_SENSITIVITY = 0.4
+const MOUSE_LOOK_SENSITIVITY_ADJUSTABLE = 0.3
+@export var mouse_look_sensitivity_setting = 0.0
+var mouse_look_sensitivity: float
+
+const JOYSTICK_LOOK_SENSITIVITY = 2.5
+const JOYSTICK_LOOK_SENSITIVITY_ADJUSTABLE = 2
+@export var joystick_look_sensitivity_setting = 0.0
+var joystick_look_sensitivity:float
+
+@export var use_settings: bool = true
 
 var mouse_locked: bool = false;
 var is_debug: bool
@@ -24,6 +34,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 signal died_signal
 
 func _ready():
+	if(use_settings):
+		LoadSettings()
+		
+	mouse_look_sensitivity = MOUSE_LOOK_SENSITIVITY + (MOUSE_LOOK_SENSITIVITY_ADJUSTABLE * mouse_look_sensitivity_setting)
+	joystick_look_sensitivity = JOYSTICK_LOOK_SENSITIVITY + (JOYSTICK_LOOK_SENSITIVITY_ADJUSTABLE * joystick_look_sensitivity_setting)
+	
 	assert(camera)
 	
 	is_debug = OS.has_feature("debug")
@@ -35,13 +51,23 @@ func _ready():
 	
 	update_interactions()
 	
+func LoadSettings():	
+	var settings_manager: GameSettingsManager
+	settings_manager = get_node("/root/GameSettingsManager")
+	if not settings_manager:
+		printerr("Unable to load settings for player. Settings not found")
+		return
+	var settings = settings_manager.settings
+	mouse_look_sensitivity_setting = settings.mouse_sensitivity
+	joystick_look_sensitivity_setting = settings.joystick_sensitivity	
+	
 func _input(event):
 	if died:
 		return
 		
 	if event is InputEventMouseMotion && mouse_locked:
-		rotate_y(deg_to_rad(-event.relative.x * MOUSE_SENSIVITY))
-		head.rotate_x(deg_to_rad(-event.relative.y * MOUSE_SENSIVITY))
+		rotate_y(deg_to_rad(-event.relative.x * mouse_look_sensitivity))
+		head.rotate_x(deg_to_rad(-event.relative.y * mouse_look_sensitivity))
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func _physics_process(delta):
@@ -68,8 +94,8 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	var look_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down")
-	rotate_y(deg_to_rad(-look_dir.x * LOOK_SENSIVITY))
-	head.rotate_x(deg_to_rad(-look_dir.y * LOOK_SENSIVITY))
+	rotate_y(deg_to_rad(-look_dir.x * joystick_look_sensitivity))
+	head.rotate_x(deg_to_rad(-look_dir.y * joystick_look_sensitivity))
 	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 	move_and_slide()
