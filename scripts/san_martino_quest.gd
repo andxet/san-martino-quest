@@ -75,9 +75,7 @@ func _run():
 	await get_tree().create_timer(5).timeout
 	
 	await fade_out_anim()
-	
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-	
+		
 	goto_main_menu()
 	# End quest
 
@@ -100,7 +98,6 @@ func fade_out_anim():
 
 func goto_main_menu():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-
 
 #region Signals callbacks
 func _on_player_died_signal():
