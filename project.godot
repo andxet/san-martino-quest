@@ -114,7 +114,7 @@ pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://internationalization/smquest_translations.csv", "res://internationalization/smquest_translations.en.translation", "res://internationalization/smquest_translations.it.translation")
+locale/translations=PackedStringArray("res://internationalization/smquest_translations.en.translation", "res://internationalization/smquest_translations.it.translation")
 
 [layer_names]
 
