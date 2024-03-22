@@ -1,0 +1,112 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1j8rk3fdmqur"]
+
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_3mk5o"]
+
+[node name="OptionsMenu" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -146.0
+offset_right = 300.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3mk5o")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 12.0
+offset_right = 590.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 57
+text = "Options"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 109.0
+offset_right = 590.0
+offset_bottom = 286.0
+columns = 2
+
+[node name="Label4" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Language"
+vertical_alignment = 1
+
+[node name="LanguageButton" type="OptionButton" parent="GridContainer"]
+layout_mode = 2
+toggle_mode = false
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Mouse look sensitivity"
+vertical_alignment = 1
+
+[node name="MouseSensSlider" type="HSlider" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = -1.0
+max_value = 1.0
+step = 0.01
+
+[node name="Label2" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Joystick look sensitivity"
+vertical_alignment = 1
+
+[node name="JoystickSensSlider" type="HSlider" parent="GridContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -1.0
+max_value = 1.0
+step = 0.01
+
+[node name="Label3" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Full screen"
+vertical_alignment = 1
+
+[node name="IsFullScreen" type="CheckBox" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -39.0
+offset_right = 47.0001
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Back"
+
+[node name="ApplyButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Apply"
+
+[connection signal="pressed" from="HBoxContainer/ApplyButton" to="." method="ApplySettings"]

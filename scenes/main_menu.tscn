@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://du0vyajc2t56p"]
+[gd_scene load_steps=8 format=3 uid="uid://du0vyajc2t56p"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_5echt"]
 [ext_resource type="Script" path="res://scripts/exit_game.gd" id="2_qx5h7"]
 [ext_resource type="PackedScene" uid="uid://c4av3durx2ya1" path="res://scenes/level/level.tscn" id="3_tpd5g"]
+[ext_resource type="Script" path="res://scenes/main_menu_ui.gd" id="4_6u3y4"]
 [ext_resource type="PackedScene" uid="uid://crwi1ejjho4yr" path="res://scenes/FPS.tscn" id="4_drfx4"]
+[ext_resource type="PackedScene" uid="uid://cbjsoogmubely" path="res://UI/main_menu.tscn" id="5_k0fxn"]
+[ext_resource type="PackedScene" uid="uid://c1j8rk3fdmqur" path="res://UI/options_menu.tscn" id="6_rf2i6"]
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_5echt")
@@ -20,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_6u3y4")
 
 [node name="Fps" parent="UI" instance=ExtResource("4_drfx4")]
 visible = false
@@ -29,68 +33,20 @@ offset_top = 30.0
 offset_right = -1004.0
 offset_bottom = -578.0
 
-[node name="Panel" type="Panel" parent="UI"]
+[node name="Main Menu" parent="UI" instance=ExtResource("5_k0fxn")]
+visible = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -146.0
-offset_right = 300.0
+
+[node name="OptionsMenu" parent="UI" instance=ExtResource("6_rf2i6")]
+layout_mode = 1
 offset_bottom = 146.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Title" type="Label" parent="UI/Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -271.0
-offset_top = 26.0
-offset_right = 272.0
-offset_bottom = 109.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 57
-text = "San Martino's Quest"
-
-[node name="Start game" type="Button" parent="UI/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = 1.0
-offset_right = 250.0
-offset_bottom = 51.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 30
-text = "Start"
-
-[node name="Exit" type="Button" parent="UI/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = 63.0
-offset_right = 250.0
-offset_bottom = 113.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 30
-text = "Exit
-"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.318347, 0.393465, -0.862462, 0, 0.909795, 0.415058, 0.947974, 0.132133, -0.289631, -22.9016, 9.86503, 0.0170345)
 
-[connection signal="pressed" from="UI/Panel/Start game" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="UI/Panel/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="UI/Main Menu/VBoxContainer/Start game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="UI/Main Menu/VBoxContainer/Options" to="UI" method="GoToOptions"]
+[connection signal="pressed" from="UI/Main Menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+
+[editable path="UI/Main Menu"]
+[editable path="UI/OptionsMenu"]
