@@ -1,4 +1,4 @@
-extends Area3D
+class_name DamageOnTouch extends Area3D
 
 @export var damage: int
 @export var cooldown: float = 1.0

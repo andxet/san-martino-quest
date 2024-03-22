@@ -1,4 +1,4 @@
-extends Node3D
+class_name ExitGame extends Node3D
 
 func _input(event):
 	if event.is_action_pressed("exit"):
