@@ -11,6 +11,11 @@ config_version=5
 [application]
 
 config/name="San Martino's quest"
+config/name_localized={
+"en": "San Martino's quest",
+"it": "San Martino's quest"
+}
+config/version="1.0.1"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
@@ -106,6 +111,10 @@ use={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://internationalization/smquest_translations.csv", "res://internationalization/smquest_translations.en.translation", "res://internationalization/smquest_translations.it.translation")
 
 [layer_names]
 
