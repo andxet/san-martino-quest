@@ -41,6 +41,16 @@ layout_mode = 1
 layout_mode = 1
 offset_bottom = 146.0
 
+[node name="MouseSensSlider" parent="UI/OptionsMenu/GridContainer" index="3"]
+min_value = 0.05
+max_value = 0.8
+value = 0.05
+
+[node name="JoystickSensSlider" parent="UI/OptionsMenu/GridContainer" index="5"]
+min_value = 0.5
+max_value = 5.0
+value = 0.5
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.318347, 0.393465, -0.862462, 0, 0.909795, 0.415058, 0.947974, 0.132133, -0.289631, -22.9016, 9.86503, 0.0170345)
 
