@@ -34,7 +34,6 @@ offset_right = -1004.0
 offset_bottom = -578.0
 
 [node name="Main Menu" parent="UI" instance=ExtResource("5_k0fxn")]
-visible = true
 layout_mode = 1
 
 [node name="OptionsMenu" parent="UI" instance=ExtResource("6_rf2i6")]
@@ -44,9 +43,6 @@ offset_bottom = 146.0
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.318347, 0.393465, -0.862462, 0, 0.909795, 0.415058, 0.947974, 0.132133, -0.289631, -22.9016, 9.86503, 0.0170345)
 
-[connection signal="pressed" from="UI/Main Menu/VBoxContainer/Start game" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="UI/Main Menu/VBoxContainer/Options" to="UI" method="GoToOptions"]
-[connection signal="pressed" from="UI/Main Menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="UI/OptionsMenu/HBoxContainer/BackButton" to="UI" method="GoToMainMenu"]
 
 [editable path="UI/Main Menu"]

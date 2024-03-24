@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1j8rk3fdmqur"]
 
-[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_3mk5o"]
+[ext_resource type="Script" path="res://scripts/options_menu_ui.gd" id="1_govgk"]
 
 [node name="OptionsMenu" type="Panel"]
 anchors_preset = 8
@@ -14,7 +14,7 @@ offset_right = 300.0
 offset_bottom = 184.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3mk5o")
+script = ExtResource("1_govgk")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
@@ -102,11 +102,3 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Back"
-
-[node name="ApplyButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-text = "Apply"
-
-[connection signal="pressed" from="HBoxContainer/ApplyButton" to="." method="ApplySettings"]
