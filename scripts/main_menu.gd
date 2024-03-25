@@ -1,4 +1,4 @@
-class_name MainMenu extends Control
+class_name MainMenu extends Node3D
 
 @export var main_menu: MainMenuUI
 @export var options_menu = OptionsMenuUI
@@ -9,13 +9,13 @@ func _ready():
 	
 	assert(main_menu)
 	assert(options_menu)
-	main_menu.options_pressed.connect(GoToOptions)
-	options_menu.back_pressed.connect(GoToMainMenu)
+	main_menu.options_pressed.connect(go_to_options)
+	options_menu.back_pressed.connect(go_to_main_menu)
 
-func GoToOptions():	
+func go_to_options():	
 	main_menu.visible = false
 	options_menu.visible = true
 	
-func GoToMainMenu():
+func go_to_main_menu():
 	main_menu.visible = true
 	options_menu.visible = false

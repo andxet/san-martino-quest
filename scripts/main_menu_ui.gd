@@ -4,7 +4,7 @@ class_name MainMenuUI extends Control
 
 signal options_pressed
 
-@onready var start_game = $"VBoxContainer/Start game"
+@onready var start_game = $VBoxContainer/StartGame
 @onready var options = $VBoxContainer/Options
 @onready var exit = $VBoxContainer/Exit
 
