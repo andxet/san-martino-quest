@@ -1,17 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://du0vyajc2t56p"]
+[gd_scene load_steps=7 format=3 uid="uid://du0vyajc2t56p"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_5echt"]
 [ext_resource type="Script" path="res://scripts/exit_game.gd" id="2_qx5h7"]
 [ext_resource type="PackedScene" uid="uid://c4av3durx2ya1" path="res://scenes/level/level.tscn" id="3_tpd5g"]
-[ext_resource type="Script" path="res://scripts/main_menu_ui.gd" id="4_6u3y4"]
 [ext_resource type="PackedScene" uid="uid://crwi1ejjho4yr" path="res://scenes/FPS.tscn" id="4_drfx4"]
 [ext_resource type="PackedScene" uid="uid://cbjsoogmubely" path="res://UI/main_menu.tscn" id="5_k0fxn"]
-[ext_resource type="PackedScene" uid="uid://bxy0aj4gy0qcf" path="res://scenes/game.tscn" id="5_m2ak2"]
 [ext_resource type="PackedScene" uid="uid://c1j8rk3fdmqur" path="res://UI/options_menu.tscn" id="6_rf2i6"]
 
 [node name="Game" type="Node3D" node_paths=PackedStringArray("main_menu", "options_menu")]
 script = ExtResource("1_5echt")
-main_menu = NodePath("UI/Main Menu")
+main_menu = NodePath("UI/MainMenu")
 options_menu = NodePath("UI/OptionsMenu")
 
 [node name="ExitOnEsc" type="Node3D" parent="."]
@@ -26,18 +24,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("4_6u3y4")
-start_game_scene = ExtResource("5_m2ak2")
 
 [node name="Fps" parent="UI" instance=ExtResource("4_drfx4")]
-visible = false
 layout_mode = 1
 offset_left = 30.0
 offset_top = 30.0
 offset_right = -1004.0
 offset_bottom = -578.0
 
-[node name="Main Menu" parent="UI" instance=ExtResource("5_k0fxn")]
+[node name="MainMenu" parent="UI" instance=ExtResource("5_k0fxn")]
 layout_mode = 1
 
 [node name="OptionsMenu" parent="UI" instance=ExtResource("6_rf2i6")]
@@ -46,8 +41,3 @@ offset_bottom = 146.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.318347, 0.393465, -0.862462, 0, 0.909795, 0.415058, 0.947974, 0.132133, -0.289631, -22.9016, 9.86503, 0.0170345)
-
-[connection signal="pressed" from="UI/OptionsMenu/HBoxContainer/BackButton" to="UI" method="GoToMainMenu"]
-
-[editable path="UI/Main Menu"]
-[editable path="UI/OptionsMenu"]

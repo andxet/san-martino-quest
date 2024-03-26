@@ -10,7 +10,8 @@ func _ready():
 	assert(main_menu)
 	assert(options_menu)
 	main_menu.options_pressed.connect(go_to_options)
-	options_menu.back_pressed.connect(go_to_main_menu)
+	options_menu.on_back_pressed.connect(go_to_main_menu)
+	go_to_main_menu()
 
 func go_to_options():	
 	main_menu.visible = false
