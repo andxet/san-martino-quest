@@ -14,10 +14,10 @@ class Settings:
 var settings: Settings
 
 func _init():	
-	LoadConfigFile()
-	Apply()
+	load_config_file()
+	apply()
 
-func LoadConfigFile():
+func load_config_file():
 	var _configFile = ConfigFile.new()	
 	var err = _configFile.load(SETTINGS_FILE_PATH)
 	
@@ -25,9 +25,9 @@ func LoadConfigFile():
 		var settings_dict = _configFile.get_value(SECTION_NAME, SECTION_NAME)
 		settings = dict_to_inst(settings_dict)
 	else:
-		RestoreToDefault()
+		restore_to_default()
 	
-func SaveConfigFile():
+func save_config_file():
 	var temp_dict = inst_to_dict(settings)
 	
 	var _configFile = ConfigFile.new()
@@ -35,10 +35,10 @@ func SaveConfigFile():
 	
 	_configFile.save(SETTINGS_FILE_PATH)
 
-func RestoreToDefault():
+func restore_to_default():
 		settings = Settings.new()
 	
-func Apply():
+func apply():
 	if(settings.fullscreen):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:

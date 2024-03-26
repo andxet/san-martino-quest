@@ -14,8 +14,10 @@ func _ready():
 	start_game.pressed.connect(_on_start_game_pressed)
 	options.pressed.connect(_on_options_pressed)
 	exit.pressed.connect(_on_exit_pressed)
-	start_game.grab_focus()
 	
+func set_focus():	
+	start_game.grab_focus()
+
 func _on_exit_pressed():
 	get_tree().quit()
 	
