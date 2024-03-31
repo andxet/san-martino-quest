@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://du0vyajc2t56p"]
+[gd_scene load_steps=8 format=3 uid="uid://du0vyajc2t56p"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_5echt"]
-[ext_resource type="Script" path="res://scripts/exit_game.gd" id="2_qx5h7"]
 [ext_resource type="PackedScene" uid="uid://c4av3durx2ya1" path="res://scenes/level/level.tscn" id="3_tpd5g"]
 [ext_resource type="PackedScene" uid="uid://crwi1ejjho4yr" path="res://scenes/FPS.tscn" id="4_drfx4"]
 [ext_resource type="PackedScene" uid="uid://cbjsoogmubely" path="res://UI/main_menu.tscn" id="5_k0fxn"]
@@ -17,9 +16,6 @@ _data = {
 script = ExtResource("1_5echt")
 main_menu = NodePath("UI/MainMenu")
 options_menu = NodePath("UI/OptionsMenu")
-
-[node name="ExitOnEsc" type="Node3D" parent="."]
-script = ExtResource("2_qx5h7")
 
 [node name="Level" parent="." instance=ExtResource("3_tpd5g")]
 
