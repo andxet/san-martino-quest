@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cbjsoogmubely" path="res://UI/main_menu.tscn" id="5_k0fxn"]
 [ext_resource type="PackedScene" uid="uid://c1j8rk3fdmqur" path="res://UI/options_menu.tscn" id="6_rf2i6"]
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("main_menu", "options_menu")]
+[node name="MainMenuScene" type="Node3D" node_paths=PackedStringArray("main_menu", "options_menu")]
 script = ExtResource("1_5echt")
 main_menu = NodePath("UI/MainMenu")
 options_menu = NodePath("UI/OptionsMenu")
