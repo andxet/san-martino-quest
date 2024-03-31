@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://du0vyajc2t56p"]
+[gd_scene load_steps=9 format=3 uid="uid://du0vyajc2t56p"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_5echt"]
 [ext_resource type="Script" path="res://scripts/exit_game.gd" id="2_qx5h7"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://crwi1ejjho4yr" path="res://scenes/FPS.tscn" id="4_drfx4"]
 [ext_resource type="PackedScene" uid="uid://cbjsoogmubely" path="res://UI/main_menu.tscn" id="5_k0fxn"]
 [ext_resource type="PackedScene" uid="uid://c1j8rk3fdmqur" path="res://UI/options_menu.tscn" id="6_rf2i6"]
+[ext_resource type="Animation" uid="uid://bwk2xqk57gc55" path="res://animations/main_menu_idle.res" id="7_y36qx"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1p503"]
+_data = {
+"main_menu_idle": ExtResource("7_y36qx")
+}
 
 [node name="MainMenuScene" type="Node3D" node_paths=PackedStringArray("main_menu", "options_menu")]
 script = ExtResource("1_5echt")
@@ -39,5 +45,14 @@ layout_mode = 1
 layout_mode = 1
 offset_bottom = 146.0
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.318347, 0.393465, -0.862462, 0, 0.909795, 0.415058, 0.947974, 0.132133, -0.289631, -22.9016, 9.86503, 0.0170345)
+[node name="Camera3D1" type="Camera3D" parent="."]
+transform = Transform3D(-0.00929632, 0.287672, -0.957684, -0.0219834, 0.957436, 0.28781, 0.999716, 0.0237287, -0.00257664, -23.04, 10.5565, 1.10476)
+current = true
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1p503")
+}
+autoplay = "main_menu_idle"
