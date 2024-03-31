@@ -136,7 +136,7 @@ func _on_interaction_area_area_exited(area):
 
 func update_interactions():
 	if all_interactions:
-		interact_label.text = all_interactions[0].interact_label
+		interact_label.text = all_interactions[0].get_interaction_label()
 	else:
 		interact_label.text = ""
 

@@ -2,6 +2,7 @@ class_name Door extends Node3D
 
 
 @onready var animation_player = $AnimationPlayer
+@onready var interaction_area = $"Hinge/Interaction area"
 
 @export var locked: bool = true
 
@@ -15,6 +16,7 @@ signal on_locked
 func _ready():
 	if locked:
 		animation_player.play("door/RESET")
+	interaction_area.interaction_label_decorator = decorate_interaction_prompt
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,3 +41,9 @@ func _on_interaction_area_on_used():
 		close()
 	else:
 		open()
+
+func decorate_interaction_prompt(int_prompt: String):
+	if(locked):
+		return "(" + tr("locked") + ")"
+	else:
+		return int_prompt
