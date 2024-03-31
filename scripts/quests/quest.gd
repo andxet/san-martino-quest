@@ -5,3 +5,6 @@ func _prepare():
 	
 func _run():
 	pass
+
+static func get_type():
+	return -1

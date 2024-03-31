@@ -15,6 +15,9 @@ class_name SanMartinoQuest extends Quest
 @export var fade_out: ColorRect
 @export var player: Player
 
+static func get_type():
+	return 0
+
 func _prepare():
 	assert(idol)
 	assert(door_side)
