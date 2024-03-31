@@ -23,7 +23,11 @@ func load_config_file():
 	
 	if err == OK:
 		var settings_dict = _configFile.get_value(SECTION_NAME, SECTION_NAME)
-		settings = dict_to_inst(settings_dict)
+		if load(settings_dict["@path"]):
+			settings = dict_to_inst(settings_dict)
+		else:
+			restore_to_default()
+			save_config_file()
 	else:
 		restore_to_default()
 	

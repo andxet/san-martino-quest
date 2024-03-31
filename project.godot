@@ -16,13 +16,14 @@ config/name_localized={
 "it": "San Martino's quest"
 }
 config/version="1.0.1"
-run/main_scene="res://scenes/main_menu.tscn"
+run/main_scene="res://scenes/start.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GameSettingsManager="*res://scripts/game_settings_manager.gd"
+GameSettingsManager="*res://scripts/singletons/game_settings_manager.gd"
+SceneManager="*res://scripts/singletons/scene_manager.gd"
 
 [display]
 
