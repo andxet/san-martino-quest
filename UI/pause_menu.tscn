@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl13ija671myf"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_65cnh"]
+[ext_resource type="PackedScene" uid="uid://du0vyajc2t56p" path="res://scenes/main_menu.tscn" id="2_523ag"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_65cnh")
+main_menu_scene = ExtResource("2_523ag")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -124.0
+offset_right = 290.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 57
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.5
+offset_top = -53.5
+offset_right = 192.5
+offset_bottom = 113.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../ToMainMenuButton")
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+
+[node name="ToMainMenuButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ContinueButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+theme_override_font_sizes/font_size = 30
+text = "Main menu"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ToMainMenuButton")
+theme_override_font_sizes/font_size = 30
+text = "Exit"
