@@ -51,13 +51,8 @@ func _ready():
 	
 	update_interactions()
 	
-func LoadSettings():	
-	var settings_manager: GameSettingsManager
-	settings_manager = get_node("/root/GameSettingsManager")
-	if not settings_manager:
-		printerr("Unable to load settings for player. Settings not found")
-		return
-	var settings = settings_manager.settings
+func LoadSettings():
+	var settings = GameSettingsManager.settings
 	mouse_look_sensitivity_setting = settings.mouse_sensitivity
 	joystick_look_sensitivity_setting = settings.joystick_sensitivity	
 	

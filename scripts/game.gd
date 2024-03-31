@@ -2,7 +2,9 @@ class_name Game extends Node3D
 
 @onready var virtual_joysticks = $UI/VirtualJoysticks
 
-@export var quest: Quest
+@export var quests: Array[Quest]
+
+var current_quest: Quest
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +21,8 @@ func _ready():
 	elif OS.has_feature("release"):
 		print("Release build")
 	
-	if quest:
-		quest._prepare()
-		quest._run()
+	for quest in quests:
+		if quest.get_type() == SceneManager.quest_to_load:
+			quest._prepare()
+			quest._run()
 	

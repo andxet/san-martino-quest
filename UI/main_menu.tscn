@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbjsoogmubely"]
+[gd_scene load_steps=2 format=3 uid="uid://cbjsoogmubely"]
 
 [ext_resource type="Script" path="res://scripts/main_menu_ui.gd" id="1_02q4t"]
-[ext_resource type="PackedScene" uid="uid://bxy0aj4gy0qcf" path="res://scenes/game.tscn" id="2_77rqb"]
 
 [node name="Main Menu" type="Panel"]
 anchors_preset = 8
@@ -12,11 +11,10 @@ anchor_bottom = 0.5
 offset_left = -300.0
 offset_top = -146.0
 offset_right = 300.0
-offset_bottom = 146.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_02q4t")
-start_game_scene = ExtResource("2_77rqb")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
@@ -48,6 +46,12 @@ layout_mode = 2
 focus_neighbor_bottom = NodePath("../Options")
 theme_override_font_sizes/font_size = 30
 text = "Start"
+
+[node name="FreeMode" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Options")
+theme_override_font_sizes/font_size = 30
+text = "Free mode"
 
 [node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2

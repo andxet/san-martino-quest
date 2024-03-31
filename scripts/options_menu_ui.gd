@@ -10,14 +10,12 @@ class_name OptionsMenuUI extends Panel
 
 signal on_back_pressed
 
-var settings_manager: GameSettingsManager
 var settings: GameSettingsManager.Settings
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	settings_manager = get_node("/root/GameSettingsManager")
-	settings_manager.load_config_file()
-	settings = settings_manager.settings
+	GameSettingsManager.load_config_file()
+	settings = GameSettingsManager.settings
 	
 	for lang in GameSettingsManager.languages:
 		language_button.add_item(tr(lang))
@@ -32,11 +30,11 @@ func set_focus():
 	back_button.grab_focus()
 
 func save():
-	settings_manager.save_config_file()
+	GameSettingsManager.save_config_file()
 	
 func restore_to_default():
-	settings_manager.restore_to_default()
-	settings = settings_manager.settings
+	GameSettingsManager.restore_to_default()
+	settings = GameSettingsManager.settings
 	update_controls()
 	
 func update_controls():
@@ -52,7 +50,7 @@ func save_controls_value():
 	settings.fullscreen = is_full_screen.button_pressed
 	
 func apply():
-	settings_manager.apply()
+	GameSettingsManager.apply()
 	update_language_button_labels()
 	
 	
