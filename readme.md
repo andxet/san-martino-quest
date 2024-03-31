@@ -19,6 +19,3 @@ https://skfb.ly/ooU69 from Nichgon
 
 Door 1:
 https://skfb.ly/6QYJv from Shedmon
-
-Door 2: (not used but present in the project)
-https://skfb.ly/6zqN8 from Sam
