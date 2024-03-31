@@ -1,4 +1,4 @@
-class_name MainMenuUI extends Control
+class_name MainMenuUI extends Panel
 
 signal options_pressed
 
