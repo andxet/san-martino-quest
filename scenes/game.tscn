@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_hrpr0"]
 [ext_resource type="PackedScene" uid="uid://c4av3durx2ya1" path="res://scenes/level/level.tscn" id="1_qc5ve"]
-[ext_resource type="Script" path="res://scripts/exit_game.gd" id="1_xmfdt"]
 [ext_resource type="PackedScene" uid="uid://cjmw0bf33ocee" path="res://entities/player.tscn" id="2_oaevj"]
 [ext_resource type="Script" path="res://scripts/san_martino_quest.gd" id="2_vkonf"]
 [ext_resource type="PackedScene" uid="uid://crwi1ejjho4yr" path="res://scenes/FPS.tscn" id="4_c2s2e"]
@@ -11,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://vtyypmj18g4s" path="res://entities/traps.tscn" id="6_tujbx"]
 [ext_resource type="Script" path="res://scripts/virtual_button.gd" id="8_taijp"]
 [ext_resource type="PackedScene" uid="uid://fcjfwcx452g2" path="res://entities/lever.tscn" id="9_4qqy1"]
+[ext_resource type="PackedScene" uid="uid://cl13ija671myf" path="res://UI/pause_menu.tscn" id="9_ndamp"]
 [ext_resource type="PackedScene" uid="uid://bik8yceark0dy" path="res://entities/door.tscn" id="10_m1dg0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_61dq4"]
@@ -47,9 +47,6 @@ path_follow_3d = NodePath("../TrapsPath/PathFollow3D")
 win_area = NodePath("../WinArea")
 fade_out = NodePath("../UI/FadeOut")
 player = NodePath("../Player")
-
-[node name="ExitOnEsc" type="Node3D" parent="."]
-script = ExtResource("1_xmfdt")
 
 [node name="Level" parent="." instance=ExtResource("1_qc5ve")]
 
@@ -175,6 +172,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("9_ndamp")]
+layout_mode = 1
 
 [node name="PickupableIdol" parent="." instance=ExtResource("4_ritki")]
 transform = Transform3D(-0.00278809, 0, -0.224983, 0, 0.225, 0, 0.224983, 0, -0.00278809, 14.9952, 1.96435, 0.0156211)
