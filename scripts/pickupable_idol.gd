@@ -23,6 +23,9 @@ func _ready():
 	moving_tween.tween_property(tween_root, "position:y", -0.5, 1).as_relative().set_trans(Tween.TRANS_SINE)
 	moving_tween.tween_property(tween_root, "position:y", 0.5, 1).as_relative().set_trans(Tween.TRANS_SINE)
 	
+func _exit_tree():
+	rotation_tween.kill()
+	moving_tween.kill()
 
 func pickup_visual():
 	moving_tween.kill()
