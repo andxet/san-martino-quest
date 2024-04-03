@@ -43,19 +43,20 @@ alignment = 1
 
 [node name="StartGame" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../FreeMode")
 theme_override_font_sizes/font_size = 30
 text = "Start"
 
 [node name="FreeMode" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../StartGame")
 focus_neighbor_bottom = NodePath("../Options")
 theme_override_font_sizes/font_size = 30
 text = "Free mode"
 
 [node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../StartGame")
+focus_neighbor_top = NodePath("../FreeMode")
 focus_neighbor_bottom = NodePath("../Exit")
 theme_override_font_sizes/font_size = 30
 text = "Options"
