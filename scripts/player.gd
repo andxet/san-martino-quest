@@ -25,11 +25,17 @@ var died: bool = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+# Trying to fix mouse and joypad conflict on steam deck
+const JOYPAD_ENABLED_FRAMES = 10
+var using_joypad_remaining_frames: int
+var mouse_relative_movement: Vector2
+
 @export var camera: Camera3D
 
 @onready var all_interactions = []
 @onready var interact_label = $"Control/Interaction label"
 @onready var head = $Head
+
 
 signal died_signal
 
@@ -51,6 +57,8 @@ func _ready():
 	
 	update_interactions()
 	
+	using_joypad_remaining_frames = JOYPAD_ENABLED_FRAMES
+	
 func LoadSettings():
 	var settings = GameSettingsManager.settings
 	mouse_look_sensitivity_setting = settings.mouse_sensitivity
@@ -61,9 +69,7 @@ func _input(event):
 		return
 		
 	if event is InputEventMouseMotion && mouse_locked:
-		rotate_y(deg_to_rad(-event.relative.x * mouse_look_sensitivity))
-		head.rotate_x(deg_to_rad(-event.relative.y * mouse_look_sensitivity))
-		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+		mouse_relative_movement += event.relative * mouse_look_sensitivity	
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -88,15 +94,11 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	var look_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down")
-	rotate_y(deg_to_rad(-look_dir.x * joystick_look_sensitivity))
-	head.rotate_x(deg_to_rad(-look_dir.y * joystick_look_sensitivity))
-	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
-
 	move_and_slide()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	
 	if died:
 		return
 		
@@ -106,7 +108,24 @@ func _process(_delta):
 	if Input.is_action_just_pressed("use"):
 		if all_interactions:
 			all_interactions[0].Use()
-
+	
+	# Look calcs
+	# Use mouse only if joypad is not moving to avoid bug with steam deck
+	var look_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down") * joystick_look_sensitivity
+	if is_zero_approx(look_dir.length()):
+		if using_joypad_remaining_frames > 0:
+			using_joypad_remaining_frames -= 1
+		else:
+			look_dir = mouse_relative_movement
+	else:
+		using_joypad_remaining_frames = JOYPAD_ENABLED_FRAMES
+		
+	
+	rotate_y(deg_to_rad(-look_dir.x))
+	head.rotate_x(deg_to_rad(-look_dir.y ))
+	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+	
+	mouse_relative_movement = Vector2.ZERO
 
 func _lock_mouse(should_lock: bool):
 	if should_lock:
